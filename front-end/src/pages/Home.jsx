@@ -1,7 +1,8 @@
+import NavBare from "../components/NavBare";
 export default function Home() {
   return (
-    
-      <h1 className="text-xl text-blue-500 home" >welcome home!!!!!!!</h1>
-    
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <h1>welcome home</h1>
+    </div>
   );
 }
