@@ -8,7 +8,7 @@ export default function ProductList(){
               className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col items-center"
             >
               <img
-                src="https://images.unsplash.com/photo-1670177257750-9b47927f68eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjB3YXRjaCUyMHByb2R1Y3R8ZW58MXx8fHwxNzYyMjg4MjY0fDA&ixlib=rb-4.1.0&q=80&w=1080"
+                src="https://korekawaii.com/cdn/shop/files/Kawaii-Sushi-Cats-T-Shirt.webp?v=1728056538"
                 alt="product"
                 className="w-full h-48 object-cover"
               />
