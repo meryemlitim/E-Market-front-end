@@ -4,6 +4,10 @@ import { Package, ShoppingCart } from "lucide-react";
 
 export default function NavBare() {
   const { user, logout } = useAuth();
+
+  const  handleMenu = async() => {
+    alert("hhhh");
+  }
   return (
     <nav className=" text-black font-semibold">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
@@ -32,7 +36,7 @@ export default function NavBare() {
           {user ? (
             <>
               <div className="flex items-center gap-12">
-              <div className="flex items-center gap-7">
+              <div className="flex items-center ">
 
                   <Link
                     to="/login"
@@ -51,12 +55,14 @@ export default function NavBare() {
                     <Package size={20} className="text-black-600" /> Orders
                   </Link>
               </div>
-                <Link
+                {/* <Link
                   onClick={logout}
                   className="text-white border border-white bg-violet-500 px-3 py-1 rounded-lg font-medium hover:bg-violet-500 transition"
                 >
                   Logout
-                </Link>
+                </Link> */}
+                <img onClick={handleMenu} class="w-10 h-10 rounded-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi77IkqCITFKM99gn-FFqZULqln3msAHyOqw&s" alt="Rounded avatar"/>
+
               </div>
             </>
           ) : (
