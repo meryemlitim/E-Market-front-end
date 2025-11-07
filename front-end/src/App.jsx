@@ -8,8 +8,7 @@ import ProductDetails from "./pages/ProductDetails.jsx";
 function App() {
   return (
     <Router>
-          <NavBare/>
-
+      <NavBare />
 
       <Routes>
         <Route path="/" element={<Home />} />
