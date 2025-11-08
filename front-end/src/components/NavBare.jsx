@@ -62,7 +62,7 @@ export default function NavBare() {
                 >
                   Logout
                 </Link> */}
-                <img onClick={handleMenu} class="w-10 h-10 rounded-full border-2 border-violet-500" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi77IkqCITFKM99gn-FFqZULqln3msAHyOqw&s" alt="Rounded avatar"/>
+                <img onClick={handleMenu} className="w-10 h-10 rounded-full border-2 border-violet-500" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi77IkqCITFKM99gn-FFqZULqln3msAHyOqw&s" alt="Rounded avatar"/>
                 {menuOpen && (
                      <div className="text-xs absolute right-6 top-10 mt-2 w-32 bg-white border border-gray-200 rounded-lg shadow-lg py-1 z-50">
                     <Link

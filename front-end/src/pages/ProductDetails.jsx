@@ -1,7 +1,31 @@
 import { ShoppingCart } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import api from "../services/api";
 export default function ProductDetails() {
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+  useEffect(() => {
+   const fetchProducDetails = async() => {
+     try {
+      const res = await api.get(`/products/${id}`);
+      setProduct(res.data.data);
+    } catch (err) {
+      console.log("error fetching product's details ", err);
+    }
+   }
+   fetchProducDetails();
+  }, [id]);
+  if(!product)
+     return (
+        <>
+        <div className="flex justify-center mt-40 text-2xl font-bold">
+            <p className="">Loading...</p>
+        </div>
+        </>
+     )
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+    <div className="min-h- bg-gray-100 flex items-center justify-center p-6">
       <div className="bg-white shadow-md rounded-2xl flex flex-col md:flex-row gap-8 p-6 max-w-5xl w-full">
         {/* Left: Product Images */}
         <div className="flex flex-col items-center w-full md:w-1/2">
@@ -33,14 +57,13 @@ export default function ProductDetails() {
         <div className="flex flex-col justify-between w-full md:w-1/2 space-y-4">
           <div>
             <h1 className="text-2xl font-semibold text-gray-800 mb-2">
-              Kawaii T-shirt
+              {product.title}
             </h1>
             <h2 className="text-yellow-500 font-medium mb-3">★★★★☆ (4.5)</h2>
             <p className="text-gray-600 leading-relaxed mb-4">
-              A premium handcrafted watch designed with elegance and precision.
-              Perfect for any occasion.
+              {product.description}
             </p>
-            <h2 className="text-2xl font-bold text-violet-600">$199.99</h2>
+            <h2 className="text-2xl font-bold text-violet-600">${product.prix}</h2>
             {/* Quantity Selector */}
             <div className="flex items-center gap-3 mt-8">
               <span className="font-medium text-gray-700">Quantité:</span>
