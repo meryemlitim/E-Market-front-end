@@ -1,16 +1,17 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { Package, ShoppingCart } from "lucide-react";
+import { LogOut, Package, ShoppingCart, User, Home } from "lucide-react";
+import { useState } from "react";
 
 export default function NavBare() {
   const { user, logout } = useAuth();
-
+  const [menuOpen, setMenuOpen] = useState(false);
   const  handleMenu = async() => {
-    alert("hhhh");
+    setMenuOpen(!menuOpen);
   }
   return (
     <nav className=" text-black font-semibold">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div className="w-full px-10 py-3 flex justify-between align-center items-center">
         {/* Logo */}
         <Link to="/" className="text-2xl font-bold tracking-wide">
           <span className="text-4xl text-violet-600">E</span>
@@ -39,7 +40,7 @@ export default function NavBare() {
               <div className="flex items-center ">
 
                   <Link
-                    to="/login"
+                    to="#"
                     className=" flex items-center gap-2 bg-white text-black-600 bg-violet-100 px-3 py-1 rounded-lg font-medium hover:bg-violet-100 transition"
                   >
                     <ShoppingCart
@@ -49,7 +50,7 @@ export default function NavBare() {
                     Cart
                   </Link>
                   <Link
-                    to="/orders"
+                    to="#"
                     className="flex items-center gap-2  text-black-600 px-3 py-1 rounded-lg font-medium hover:bg-violet-200 transition"
                   >
                     <Package size={20} className="text-black-600" /> Orders
@@ -61,7 +62,36 @@ export default function NavBare() {
                 >
                   Logout
                 </Link> */}
-                <img onClick={handleMenu} class="w-10 h-10 rounded-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi77IkqCITFKM99gn-FFqZULqln3msAHyOqw&s" alt="Rounded avatar"/>
+                <img onClick={handleMenu} class="w-10 h-10 rounded-full border-2 border-violet-500" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi77IkqCITFKM99gn-FFqZULqln3msAHyOqw&s" alt="Rounded avatar"/>
+                {menuOpen && (
+                     <div className="text-xs absolute right-6 top-10 mt-2 w-32 bg-white border border-gray-200 rounded-lg shadow-lg py-1 z-50">
+                    <Link
+                      to="/"
+                      className="flex gap-2  px-4 py-2 text-gray-700 hover:bg-violet-100"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      <Home size={14} />
+                      
+                      Home
+                    </Link>
+                        <Link
+                          to="/profile"
+                          className="flex gap-2 px-4 py-2 text-gray-700 hover:bg-violet-100"
+                          onClick={() => setMenuOpen(false)}
+                        >
+                          <User size={14} />
+                          Profile
+                        </Link>
+                    <hr className="border-gray-200" />
+                    <button
+                      onClick={() => { logout(); setMenuOpen(false); }}
+                      className=" flex gap-2 w-full text-left px-4 py-2 text-gray-700 hover:bg-violet-100"
+                    >
+                       <LogOut size={14} />
+                      Logout
+                    </button>
+                  </div>
+                )}
 
               </div>
             </>

@@ -1,3 +1,5 @@
+import { ShoppingCart } from "lucide-react";
+
 export default function ProductList(){
     return(
           <div className="min-h-82 flex items-center justify-center bg-gray-100 p-6">
@@ -12,9 +14,15 @@ export default function ProductList(){
                 alt="product"
                 className="w-full h-48 object-cover"
               />
-              <h1 className="text-lg font-semibold mt-3 mb-4 text-gray-800">
+              <h1 className="text-sm font-bold mt-3  text-black-800">
                 Product Title
               </h1>
+              <button className="flex gap-2 items-center text-sm/8 text-violet-500 font-bold border-2 rounded-full px-4 mb-4 mt-4 border-violet-500 hover:text-white hover:bg-violet-500 transition">
+               <ShoppingCart
+                      size={20}
+                      className=" text-black-600"
+                    />
+              $30.90</button>
             </div>
           ))}
         </div>

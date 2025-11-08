@@ -19,7 +19,6 @@ export default function AuthForm({ type = "register" }) {
   };
 
   const handleSubmit = async (e) => {
-    console.log("🔪🔪🔪🔪");  
     e.preventDefault();
     setLoading(true);
     setError("");
