@@ -36,7 +36,7 @@ export default function ProductList() {
         {products.map((item) => (
             <Link
             key={item._id}
-            to={user? `/productDatails/${item._id}` : "/login"}
+            to={user? `/productDetails/${item._id}` : "/login"}
             >
             <div
                 key={item}

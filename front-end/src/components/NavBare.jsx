@@ -84,7 +84,7 @@ export default function NavBare() {
                         </Link>
                     <hr className="border-gray-200" />
                     <button
-                      onClick={() => { logout(); setMenuOpen(false); }}
+                      onClick={() => { logout(); setMenuOpen(false);}}
                       className=" flex gap-2 w-full text-left px-4 py-2 text-gray-700 hover:bg-violet-100"
                     >
                        <LogOut size={14} />
