@@ -43,7 +43,8 @@ export default function ProductList() {
                 className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col items-center"
             >
                 <img
-                src="https://korekawaii.com/cdn/shop/files/Kawaii-Sushi-Cats-T-Shirt.webp?v=1728056538"
+                // src="https://korekawaii.com/cdn/shop/files/Kawaii-Sushi-Cats-T-Shirt.webp?v=1728056538"
+                 src={item.images.length !== 0 ? `http://localhost:3000${item.images[0]}` : "https://cdn-icons-png.flaticon.com/512/73/73775.png"}
                 //   src={item.images[0]} 
                 alt="product"
                 

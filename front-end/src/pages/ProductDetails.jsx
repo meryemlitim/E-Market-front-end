@@ -6,24 +6,24 @@ export default function ProductDetails() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   useEffect(() => {
-   const fetchProducDetails = async() => {
-     try {
-      const res = await api.get(`/products/${id}`);
-      setProduct(res.data.data);
-    } catch (err) {
-      console.log("error fetching product's details ", err);
-    }
-   }
-   fetchProducDetails();
+    const fetchProducDetails = async () => {
+      try {
+        const res = await api.get(`/products/${id}`);
+        setProduct(res.data.data);
+      } catch (err) {
+        console.log("error fetching product's details ", err);
+      }
+    };
+    fetchProducDetails();
   }, [id]);
-  if(!product)
-     return (
-        <>
+  if (!product)
+    return (
+      <>
         <div className="flex justify-center mt-40 text-2xl font-bold">
-            <p className="">Loading...</p>
+          <p className="">Loading...</p>
         </div>
-        </>
-     )
+      </>
+    );
   return (
     <div className="min-h- bg-gray-100 flex items-center justify-center p-6">
       <div className="bg-white shadow-md rounded-2xl flex flex-col md:flex-row gap-8 p-6 max-w-5xl w-full">
@@ -31,25 +31,25 @@ export default function ProductDetails() {
         <div className="flex flex-col items-center w-full md:w-1/2">
           {/* Main Image */}
           <img
-            src="https://korekawaii.com/cdn/shop/files/Kawaii-Sushi-Cats-T-Shirt.webp?v=1728056538"
+            src={
+              product.images.length !== 0
+                ? `http://localhost:3000${product.images[0]}`
+                : "https://cdn-icons-png.flaticon.com/512/73/73775.png"
+            }
             alt="product"
             className="w-full h-96 object-cover rounded-xl mb-4"
           />
 
           {/* Thumbnails */}
           <div className="flex gap-3 justify-center">
-            {Array(3)
-              .fill(
-                "https://korekawaii.com/cdn/shop/files/Kawaii-Sushi-Cats-T-Shirt.webp?v=1728056538"
-              )
-              .map((src, index) => (
-                <img
-                  key={index}
-                  src={src}
-                  alt={`thumbnail-${index}`}
-                  className="w-20 h-20 object-cover rounded-lg border-2 border-gray-200 hover:border-violet-500 cursor-pointer transition"
-                />
-              ))}
+            {product.images.slice(1, 4).map((img, index) => (
+              <img
+                key={index}
+                src={`http://localhost:3000${img}`}
+                alt={`thumbnail-${index}`}
+                className="w-20 h-20 object-cover rounded-lg border-2 border-gray-200 hover:border-violet-500 cursor-pointer transition"
+              />
+            ))}
           </div>
         </div>
 
@@ -63,7 +63,9 @@ export default function ProductDetails() {
             <p className="text-gray-600 leading-relaxed mb-4">
               {product.description}
             </p>
-            <h2 className="text-2xl font-bold text-violet-600">${product.prix}</h2>
+            <h2 className="text-2xl font-bold text-violet-600">
+              ${product.prix}
+            </h2>
             {/* Quantity Selector */}
             <div className="flex items-center gap-3 mt-8">
               <span className="font-medium text-gray-700">Quantité:</span>
