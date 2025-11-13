@@ -3,6 +3,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../services/api";
 export default function ProductDetails() {
+  const [image, setImage] = useState("");
+  const [count, setCount] = useState(1);
+  function changePic(img) {
+    setImage(img);
+  }
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   useEffect(() => {
@@ -16,6 +21,7 @@ export default function ProductDetails() {
     };
     fetchProducDetails();
   }, [id]);
+
   if (!product)
     return (
       <>
@@ -32,9 +38,9 @@ export default function ProductDetails() {
           {/* Main Image */}
           <img
             src={
-              product.images.length !== 0
+              image === ""
                 ? `http://localhost:3000${product.images[0]}`
-                : "https://cdn-icons-png.flaticon.com/512/73/73775.png"
+                : `http://localhost:3000${image}`
             }
             alt="product"
             className="w-full h-96 object-cover rounded-xl mb-4"
@@ -42,12 +48,15 @@ export default function ProductDetails() {
 
           {/* Thumbnails */}
           <div className="flex gap-3 justify-center">
-            {product.images.slice(1, 4).map((img, index) => (
+            {product.images.slice(0, 3).map((img, index) => (
               <img
                 key={index}
                 src={`http://localhost:3000${img}`}
                 alt={`thumbnail-${index}`}
-                className="w-20 h-20 object-cover rounded-lg border-2 border-gray-200 hover:border-violet-500 cursor-pointer transition"
+                className={`w-20 h-20 object-cover rounded-lg border-2 border-gray-200 hover: cursor-pointer transition ${
+                  image === img ? "border-violet-500" : "border-none"
+                }`}
+                onClick={() => changePic(img)}
               />
             ))}
           </div>
@@ -70,11 +79,11 @@ export default function ProductDetails() {
             <div className="flex items-center gap-3 mt-8">
               <span className="font-medium text-gray-700">Quantité:</span>
               <div className="flex items-center border border-gray-300 rounded-lg">
-                <button className="px-3 py-1 text-lg text-violet-500 hover:bg-violet-100 transition">
+                <button onClick={() => setCount(prev => prev > 1 ? prev - 1 : 1)} className="px-3 py-1 text-lg text-violet-500 hover:bg-violet-100 transition">
                   -
                 </button>
-                <span className="px-4 py-1 text-gray-800">1</span>
-                <button className="px-3 py-1 text-lg text-violet-500 hover:bg-violet-100 transition">
+                <span className="px-4 py-1 text-gray-800">{count}</span>
+                <button onClick={() => setCount(prev => prev + 1)} className="px-3 py-1 text-lg text-violet-500 hover:bg-violet-100 transition">
                   +
                 </button>
               </div>
