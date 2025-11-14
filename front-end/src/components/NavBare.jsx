@@ -74,14 +74,6 @@ export default function NavBare() {
                       
                       Home
                     </Link>
-                        <Link
-                          to="/profile"
-                          className="flex gap-2 px-4 py-2 text-gray-700 hover:bg-violet-100"
-                          onClick={() => setMenuOpen(false)}
-                        >
-                          <User size={14} />
-                          Profile
-                        </Link>
                     <hr className="border-gray-200" />
                     <button
                       onClick={() => { logout(); setMenuOpen(false);}}

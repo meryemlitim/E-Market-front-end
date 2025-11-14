@@ -1,4 +1,21 @@
+import { useEffect, useState } from "react";
+import api from "../services/api";
+
 export default function SearchBar() {
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+  const fetchCategories = async () => {
+  try{
+  const res = await api.get("/categories/");
+  console.log("cat",res); 
+  setCategories(res.data);
+  console.log("cat2",res.data); 
+  }catch(err){
+   console.log("error fetching products", err);
+  }
+  }
+  fetchCategories();
+  },[])
   return (
     <div className="mx-auto px-4 py-3 flex flex-col gap-4 bg-gray-100">
       <form className="w-full mx-auto flex flex-col md:flex-row gap-2 items-center">
@@ -56,26 +73,15 @@ export default function SearchBar() {
       {/* 🏷️ Category Selector */}
       <div className="w-full overflow-x-auto flex justify-center">
         <ul className="flex space-x-3 min-w-max">
-          {[
-            "All Categories",
-            "Deals",
-            "Crypto",
-            "Fashion",
-            "Health & Wellness",
-            "Art",
-            "Home",
-            "Sport",
-            "Music",
-            "Gaming",
-          ].map((category, index) => (
+          {categories.map((category, index) => (
             <li key={index}>
               <input
                 type="radio"
                 id={`cat-${index}`}
                 name="category"
-                value={category}
+                value={category.name}
                 className="hidden peer"
-                defaultChecked={category === "Sport"}
+                defaultChecked={category.name === "Home"}
               />
               <label
                 htmlFor={`cat-${index}`}
@@ -85,7 +91,7 @@ export default function SearchBar() {
                            hover:bg-gray-50 peer-checked:bg-violet-600 peer-checked:text-white
                            peer-checked:border-violet-600"
               >
-                {category}
+                {category.name}
               </label>
             </li>
           ))}
