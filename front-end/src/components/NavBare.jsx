@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { LogOut, Package, ShoppingCart, User, Home } from "lucide-react";
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 export default function NavBare() {
+  const navigate = useNavigate();
   const { user, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const  handleMenu = async() => {
@@ -76,7 +77,7 @@ export default function NavBare() {
                     </Link>
                     <hr className="border-gray-200" />
                     <button
-                      onClick={() => { logout(); setMenuOpen(false);}}
+                      onClick={() => { logout();navigate("/"); setMenuOpen(false);}}
                       className=" flex gap-2 w-full text-left px-4 py-2 text-gray-700 hover:bg-violet-100"
                     >
                        <LogOut size={14} />

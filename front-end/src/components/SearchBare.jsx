@@ -73,6 +73,7 @@ export default function SearchBar() {
       {/* 🏷️ Category Selector */}
       <div className="w-full overflow-x-auto flex justify-center">
         <ul className="flex space-x-3 min-w-max">
+          
           {categories.map((category, index) => (
             <li key={index}>
               <input
@@ -93,7 +94,7 @@ export default function SearchBar() {
               >
                 {category.name}
               </label>
-            </li>
+            </liù>
           ))}
         </ul>
       </div>
