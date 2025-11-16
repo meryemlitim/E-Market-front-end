@@ -7,8 +7,10 @@ export default function SearchBar() {
   const fetchCategories = async () => {
   try{
   const res = await api.get("/categories/");
+  const apiCategories = res.data;
+  const allCategories = [{name: "All"},...apiCategories];
   console.log("cat",res); 
-  setCategories(res.data);
+  setCategories(allCategories);
   console.log("cat2",res.data); 
   }catch(err){
    console.log("error fetching products", err);
@@ -82,7 +84,7 @@ export default function SearchBar() {
                 name="category"
                 value={category.name}
                 className="hidden peer"
-                defaultChecked={category.name === "Home"}
+                defaultChecked={category.name === "All"}
               />
               <label
                 htmlFor={`cat-${index}`}
