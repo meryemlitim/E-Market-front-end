@@ -94,7 +94,7 @@ export default function SearchBar() {
               >
                 {category.name}
               </label>
-            </liù>
+            </li>
           ))}
         </ul>
       </div>
