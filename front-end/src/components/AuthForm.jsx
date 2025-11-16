@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
+import toast from "react-hot-toast";
+
 export default function AuthForm({ type = "register" }) {
   const { login, register } = useAuth();
   const navigate = useNavigate();
@@ -29,15 +31,17 @@ export default function AuthForm({ type = "register" }) {
           email: form.email,
           password: form.password,
         });
-        alert("✅ Registered successfully!");
-        navigate("/");
+       toast.success("Registered successfully!");
+       navigate("/");
       } else {
         await login(form.email, form.password);
+        toast.success("Logged in successfully!"); 
         navigate("/");
       }
-    } catch (err) {
-      console.log(err);
-      setError(err.response?.data?.message || "Something went wrong");
+    } catch (error) {
+      console.log(error);
+      setError(error.response?.data?.message || "Something went wrong");
+      
     } finally {
       setLoading(false);
     }
