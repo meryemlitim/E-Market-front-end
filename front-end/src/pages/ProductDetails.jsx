@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import api from "../services/api";
 import NavBare from "../components/NavBare";
 import toast from "react-hot-toast";
+import { Footer } from "../components/Footer";
 export default function ProductDetails() {
   const [image, setImage] = useState("");
   const [count, setCount] = useState(1);
@@ -117,6 +118,7 @@ export default function ProductDetails() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
