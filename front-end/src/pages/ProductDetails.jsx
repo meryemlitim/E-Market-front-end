@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../services/api";
 import NavBare from "../components/NavBare";
+import toast from "react-hot-toast";
+import { Footer } from "../components/Footer";
 export default function ProductDetails() {
   const [image, setImage] = useState("");
   const [count, setCount] = useState(1);
@@ -102,7 +104,12 @@ export default function ProductDetails() {
               </div>
               {/* Price and Add to Cart */}
               <div className="flex items-center justify-between mt-10">
-                <button className=" flex gap-4 bg-violet-500 hover:bg-violet-600 text-white font-medium px-6 py-2 rounded-lg transition">
+                <button
+                  onClick={() => {
+                    toast.success("Product added successfully to your cart!");
+                  }}
+                  className=" flex gap-4 bg-violet-500 hover:bg-violet-600 text-white font-medium px-6 py-2 rounded-lg transition"
+                >
                   <ShoppingCart className="w-5 h-5" />
                   Add to Cart
                 </button>
@@ -111,6 +118,7 @@ export default function ProductDetails() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

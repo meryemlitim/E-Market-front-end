@@ -3,8 +3,9 @@ import Home from "./pages/Home.jsx";
 import Register from "./pages/register.jsx";
 import Login from "./pages/login.jsx";
 import NotFount from "./pages/notFound.jsx";
-import NavBare from "./components/NavBare.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
+import { Toaster } from 'react-hot-toast';
+
 function App() {
   return (
     <Router>
@@ -16,6 +17,7 @@ function App() {
         <Route path="/productDetails/:id" element={<ProductDetails />} />
         <Route path="*" element={<NotFount />} />
       </Routes>
+         <Toaster position="top-right" />                                           
     </Router>
   );
 }
